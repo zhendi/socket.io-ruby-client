@@ -56,7 +56,7 @@ module SocketIO
     def connect_transport
       if @supported_transports.include? "websocket"
         scheme = @uri.scheme == "https" ? "wss" : "ws"
-        @transport = WebSocket.new("#{scheme}://#{@uri.host}:#{@uri.port}/socket.io/1/websocket/#{@session_id}", origin: @uri.to_s)
+        @transport = WebSocket.new("#{scheme}://#{@uri.host}:#{@uri.port}/socket.io/1/websocket/#{@session_id}", :origin => @uri.to_s)
       else
         raise "We only support WebSockets.. and this server doesnt like web sockets.. O NO!!"
       end
@@ -122,7 +122,7 @@ module SocketIO
     end
 
     def send_event(name, hash)
-      @transport.send("5:::#{{name: name, args: [hash]}.to_json}") # rescue false
+      @transport.send("5:::#{{:name => name, :args => [hash]}.to_json}") # rescue false
     end
     alias :emit :send_event
 
