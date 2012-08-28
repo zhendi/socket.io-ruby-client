@@ -20,14 +20,6 @@ module SocketIO
   class Client
     VERSION = "0.0.2"
 
-    [:INT, :TERM].each do |sig|
-      Signal.trap(sig) do
-        puts
-        puts "bye"
-        exit
-      end
-    end
-
     # The state of the Socket.IO socket can be disconnected, disconnecting, connected and connecting.
     # The transport connection can be closed, closing, open, and opening.
 
