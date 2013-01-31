@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'web_socket'
 require 'rest_client'
 require 'json'
